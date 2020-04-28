@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  ghostdb:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    volumes:
+      - mysql_storage_new:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_USER: naman
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: ghost
+
+  ghostos:
+    image: ghost:3.14-alpine
+    restart: always
+    links:
+       - ghostdb:mysql
+    ports:
+      - 8080:2368
+    environment:
+      database__client: mysql
+      database__connection__host: ghostdb
+      database__connection__user: naman
+      database__connection__password: root
+      database__connection__database: ghost
+    volumes:
+      - ghost_storage_new:/var/lib/ghost/content
+
+volumes:
+   mysql_storage_new:
+   ghost_storage_new:
