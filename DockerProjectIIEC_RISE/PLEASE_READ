@@ -1,0 +1,19 @@
+id:-RISE 2020.10.4.1
+
+My docker project is on Redmine.
+Redmine is a free and open source, web-based project management and issue tracking tool.
+It allows users to manage multiple projects and associated subprojects. 
+It features per project wikis and forums, time tracking, and flexible, role-based access control.
+
+I have used Redmin docker image version 4.1 and for Database i have used MySQL image version 5.7
+It has a multi-tier architecture and requires infrasturucture.
+
+default admin login for Redmin is :
+-------------------------------------------------------------------------------------------------
+id:-admin
+Password:-admin
+-------------------------------------------------------------------------------------------------
+port:8080
+
+THANKS PLEASE LOOK AT MY OTHER docker-compose YMLs ALSO
+
