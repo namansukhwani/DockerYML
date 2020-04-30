@@ -1,0 +1,35 @@
+version: '3'
+
+services:
+  redmineDB:
+    image: mysql:5.7
+    ports:
+      - 3306:3306
+    volumes:
+      - rmdb_storage:/var/lib/mysql
+    restart: always
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_USER: naman
+      MYSQL_PASSWORD: root
+      MYSQL_DATABASE: redmine
+
+  redmineOS:
+    image: redmine:4.1
+    restart: always
+    depends_on:
+       - redmineDB
+    ports:
+      - 8080:3000
+    environment:
+      REDMINE_DB_PORT: 3306
+      REDMINE_DB_MYSQL: redmineDB
+      REDMINE_DB_USERNAME: naman
+      REDMINE_DB_PASSWORD: root
+      REDMINE_DB_DATABASE: redmine
+    volumes:
+      - rmos_storage:/usr/src/redmine/files
+
+volumes:
+   rmdb_storage:
+   rmos_storage:
